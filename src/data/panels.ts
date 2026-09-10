@@ -4,7 +4,6 @@ export interface PanelEntry {
   content: string;
 }
 
-/** Dữ liệu mẫu cho Accordion. */
 export const PANELS: PanelEntry[] = [
   {
     id: 'item-1',

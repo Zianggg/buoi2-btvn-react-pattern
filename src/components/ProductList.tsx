@@ -15,7 +15,6 @@ const formatPrice = new Intl.NumberFormat('vi-VN', {
 export function ProductList() {
   const [pageSize, setPageSize] = useState(5);
 
-  // Toàn bộ việc phân trang do hook lo; component chỉ lấy kết quả ra hiển thị.
   const page = usePagination<Product>(PRODUCTS, pageSize);
 
   return (

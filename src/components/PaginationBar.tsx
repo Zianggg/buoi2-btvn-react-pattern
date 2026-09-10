@@ -19,10 +19,6 @@ const pageClass =
   'size-8 rounded-md border text-sm tabular-nums transition-colors ' +
   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600';
 
-/**
- * Thanh chuyển trang thuần giao diện: không gọi usePagination, chỉ nhận số liệu
- * và các hàm từ bên ngoài. Đây là phần "hiển thị" tách khỏi phần "logic".
- */
 export function PaginationBar({
   currentPage,
   totalPages,

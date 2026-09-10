@@ -1,9 +1,5 @@
 @import 'tailwindcss';
 
-/*
-  Toàn bộ phần tạo kiểu nằm trong class của Tailwind ngay tại JSX.
-  Tệp này chỉ nạp Tailwind và đặt nền chung cho trang.
-*/
 @layer base {
   body {
     @apply bg-slate-100 text-slate-900 antialiased;

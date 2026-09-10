@@ -8,16 +8,10 @@ import {
 } from './AccordionContext';
 
 interface AccordionProps {
-  /** Value của panel mở sẵn khi vừa vào trang. Bỏ trống thì mọi panel đều đóng. */
   defaultValue?: string;
   children: ReactNode;
 }
 
-/**
- * Component gốc: giữ state và phát xuống qua Context, giống cách Tabs đã làm ở
- * bài thực hành. Các component con tự đọc Context nên người dùng thoải mái
- * sắp xếp lại Header/Panel mà không phải truyền props thủ công qua nhiều tầng.
- */
 function AccordionRoot({ defaultValue, children }: AccordionProps) {
   const state = useAccordionState(defaultValue);
 
@@ -29,7 +23,7 @@ function AccordionRoot({ defaultValue, children }: AccordionProps) {
 }
 
 interface AccordionItemProps {
-  /** Định danh của panel, phải là duy nhất trong cùng một Accordion. */
+  /** Phải là duy nhất trong cùng một Accordion. */
   value: string;
   children: ReactNode;
 }
@@ -76,7 +70,6 @@ function AccordionHeader({ children }: AccordionHeaderProps) {
       >
         <span className="flex-1">{children}</span>
 
-        {/* Dấu cộng thành dấu trừ: nét dọc xoay đi và mờ dần khi panel mở. */}
         <span className="relative size-3.5 shrink-0" aria-hidden="true">
           <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-blue-600" />
           <span
@@ -97,9 +90,8 @@ interface AccordionPanelProps {
 function AccordionPanel({ children }: AccordionPanelProps) {
   const { isOpen, headerId, panelId } = useAccordionItemContext('Accordion.Panel');
 
-  // Panel đóng vẫn nằm trong DOM để đóng/mở có chuyển động chiều cao (0fr -> 1fr).
-  // `inert` loại phần nội dung đang ẩn khỏi thứ tự Tab và khỏi trình đọc màn hình,
-  // nên về mặt sử dụng nó tương đương với việc không render.
+  // Panel đóng vẫn nằm trong DOM để chiều cao chạy được từ 0fr sang 1fr, nhưng
+  // `inert` loại nó khỏi thứ tự Tab và khỏi trình đọc màn hình như thể không render.
   return (
     <div
       role="region"
